@@ -7,12 +7,10 @@ class Home extends CI_Controller {
     parent::__construct();
 
     $this->load->model('rh_house');
-    $this->load->helper('rh_public');
     // $this->load->library('lib_redis');
-    $this->load->library('session');
   }
 
-  public function login() {
+  public function recv_openid() {
     $openid_info = $this->input->get();
     log_message('debug', '/home/login recv data: ' . json_encode($openid_info));
     log_message('debug', '/home/login recv data: email=' . $openid_info['openid_sreg_email']);
@@ -58,10 +56,28 @@ class Home extends CI_Controller {
     $sig_str .= 'sreg.fullname:' . $openid_info['openid_sreg_fullname'] . "\n";
     $sig_str .= 'sreg.nickname:' . $openid_info['openid_sreg_nickname'] . "\n";
 
-    $new_sig = base64_encode(hash_hmac('sha256', $sig_str, $mac_key));
+    $new_sig = base64_encode(hash_hmac('sha256', $sig_str, base64_decode($mac_key), true));
     log_message('debug', 'Old sig = ' . $sig);
     log_message('debug', 'New sig = ' . $new_sig);
+    if ($sig !== $new_sig) {
+      echo "Invalid OpenID !!!";
+      return false;
+    }
 
+    // set this user session
+    $this->session->unset_userdata('neid');
+    $this->session->set_userdata(array(
+      'email' => $openid_info['openid_sreg_email'],
+      'nickname' => $openid_info['openid_sreg_nickname'],
+      'fullname' => $openid_info['openid_sreg_fullname'],
+    ));
+
+    $open_page = $this->session->userdata('open_page');
+    if ($open_page == 'home') {
+      return $this->index();
+    }
+    else
+      $this->load->view($open_page);
   }
 
   // default index entry
@@ -92,8 +108,28 @@ class Home extends CI_Controller {
     $this->load->view('about');
   }
 
+  public function login() {
+    return $this->_redirect2neid('home');
+  }
+
+  public function clean() {
+    $this->session->sess_destroy();
+
+    redirect('/home/index', 'location', 302);
+  }
+
   public function publish() {
-    $this->load->view('publish');
+    $email = $this->session->userdata('email');
+    if (! $email) {
+      return $this->_redirect2neid('publish');
+    }
+    else {
+      // $nickname = $this->session->userdata('nickname');
+      // log_message('debug', 'publish page: ' . 'email=' . $email . ', nickname=' . $nickname);
+      $this->load->view('publish', array(
+        'email' => explode('@', $email)[0],
+      ));
+    }
   }
 
   public function pos() {
@@ -108,7 +144,7 @@ class Home extends CI_Controller {
   }
 
   // Redirect to NE-Openid
-  public function neid() {
+  public function _redirect2neid($page = 'publish') {
     // doc: https://login.netease.com/download/ntes_openid_dev.pdf
 
     $params = array(
@@ -136,6 +172,7 @@ class Home extends CI_Controller {
 
     $u_session = array(
       'neid' => $post_arr,
+      'open_page' => $page,
     );
     $this->session->set_userdata($u_session);
 
@@ -143,10 +180,10 @@ class Home extends CI_Controller {
       'openid.ns' => 'http://specs.openid.net/auth/2.0',
       'openid.mode' => 'checkid_setup',
       'openid.assoc_handle' => $post_arr['assoc_handle'],
-      'openid.return_to'  => base_url() . 'home/login',
+      'openid.return_to'  => base_url() . 'home/recv_openid',
       'openid.claimed_id' => 'http://specs.openid.net/auth/2.0/identifier_select',
       'openid.identity'  => 'http://specs.openid.net/auth/2.0/identifier_select',
-      'openid.realm' => base_url() . 'home/openid',
+      'openid.realm' => base_url() . $page,
       'openid.ns.sreg' => 'http://openid.net/extensions/sreg/1.1',
       'openid.sreg.required' => 'nickname,email,fullname',
     );

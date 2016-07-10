@@ -26,7 +26,7 @@
               <div class="form-group">
                   <label class="col-sm-2 control-label">POPO号 *</label>
                   <div class="col-sm-10">
-                     <input type="text" id="popo" name="popo" value="" placeholder="Corp邮箱前缀">@corp.netease.com
+                     <input type="text" id="popo" name="popo" readonly="true" value="<?php echo $email; ?>" placeholder="Corp邮箱前缀">@corp.netease.com
                   </div>
               </div>
               <div class="form-group">

@@ -20,11 +20,20 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <p><strong>V0.0.2&nbsp;&nbsp;&nbsp;&nbsp;2016-07-10</strong></p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            1. 在蜂巢部门的“西秦公子”的建议下，增加了【我要发布】自动关联网易内部 OpenID 统一认证；<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            2. 增加用户登录/退出功能；<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            3. 修复了几处BUG；
+          </p>
+
             <p><strong>V0.0.1&nbsp;&nbsp;&nbsp;&nbsp;2016-07-09</strong></p>
             <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              1.完成基本功能：发布猪舍，4公里地图麻点标注，查看猪舍详细，小区搜索，提需求和建议；<br/>
+              1. 完成基本功能：发布猪舍，4公里地图麻点标注，查看猪舍详细，小区搜索，提需求和建议；<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              2.在内网工作站上线，小范围邀请测试；</p>
+              2. 在内网工作站上线，小范围邀请测试；</p>
         </div>
     </div>
 </div>

@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="/home/index">NE租房分享</a>
     </div>
     <div>
-      <ul class="nav navbar-nav">
+      <ul class="nav navbar-nav pull-right">
           <li class=""><a href="/home/index">3公里猪舍</a></li>
           <li class=""><a href="/home/publish">我要发布</a></li>
           <li class=""><a href="/feedback/index">需求&建议&BUG</a></li>
@@ -24,6 +24,16 @@
               echo file_get_contents('hits.dat');
             ?>
           </a></li>
+          <?php
+            $name = $this->session->userdata('fullname');
+            if ($name) {
+              echo '<li class=""><a href="#">欢迎你：' . $name . '</a></li>';
+              echo '<li class=""><a href="/home/clean">退出</a></li>';
+            }
+            else
+              echo '<li class=""><a href="/home/login">登录</a></li>';
+          ?>
+
       </ul>
     </div>
 </nav>
