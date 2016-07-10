@@ -1,0 +1,111 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class House extends CI_Controller {
+
+  public function __construct() {
+    parent::__construct();
+
+    $this->load->model('rh_house');
+    // $this->load->library('lib_redis');
+  }
+
+  // public function db() {
+  //   return $this->rh_house->has();
+  // }
+
+  // search the small zoon
+  public function search() {
+    $zoon_name = trim($this->input->post('zoon_name'));
+    log_message('debug', 'Search zoon name = ' . $zoon_name);
+
+    // fetch just this zoon data
+    $all_pos = $this->rh_house->fetch_zoon($zoon_name);
+    log_message('debug', 'Search all pos: ' . json_encode($all_pos));
+
+    foreach ($all_pos as $key => $value) {
+      $tmp = explode(',', $all_pos[$key]['xy_point']);
+      $new = array();
+      foreach ($tmp as $k => $v) {
+        $new[] = (float)$v;
+      }
+      $all_pos[$key]['xy_point'] = $new;
+    }
+    log_message('debug', 'Search new pos: ' . json_encode($all_pos));
+
+    $this->load->view('home', array(
+      'pos' => $all_pos,
+    ));
+  }
+
+  // lookup the detail info of the house
+  public function detail() {
+    $house_id = $this->input->get('id');
+    $detail = $this->rh_house->one_detail($house_id);
+    if ($detail) {
+      if ($detail['animal']) {
+        $tmp = explode(',', $detail['animal']);
+        $new = array();
+        foreach ($tmp as $key => $value) {
+          if ($value == 'cat') $new[] = '喵星人';
+          elseif ($value == 'dog') $new[] = '汪星人';
+        }
+        $detail['animal'] = $new;
+      }
+
+      unset($detail['xy_point']);
+
+      // fetch the image file path list
+      $detail['imgs'] = array();
+      $img_dir = 'data/' . $detail['popo'] . '/' . $detail['ukey'];
+      $dir = dir($img_dir);
+      while (($file = $dir->read()) !== false) {
+        if ($file !== '.' && $file !== '..')
+          $detail['imgs'][] = '/' . $img_dir . '/' . $file;
+      }
+      $dir->close();
+      unset($detail['ukey']);
+    }
+
+    // print_r($detail);
+    $this->load->view('detail', array(
+      'detail' => $detail,
+    ));
+  }
+
+  // recv the house publish params
+  public function pub() {
+    $community = trim($this->input->post('community'));   // * xxx
+    $popo = trim($this->input->post('popo'));             // * xxx
+    $phone = trim($this->input->post('phone'));     //   132xxx
+    $room_num = $this->input->post('room_num');     // * 3
+    $room_type = $this->input->post('room_type');   // * master|slave|single
+    $man = $this->input->post('man');               // * girl|boy|no
+    $animal = $this->input->post('animal');         //   cat|dog|no
+    $price = $this->input->post('price');           // * 1500
+    $other = $this->input->post('other_info');      //   xxx
+    $xy_point = $this->input->post('xy_point');     // * 120.3432254,30.3434343
+    $s_date = $this->input->post('s_date');         // * 2016-07-08
+    $ukey = $this->input->post('ukey');             // * 1467896311543
+
+    log_message('debug', 'House pub post params: ' . json_encode($this->input->post()));
+
+    if ($other)
+      $other = substr($other, 0, 139);
+
+    $animal_str = '';
+    if ($animal) $animal_str = implode(',', $animal);
+
+    $page = 'pub_failed';
+    if ($community && $popo && $xy_point) {
+      $ret = $this->rh_house->save_item($s_date, $ukey, $community, $popo, $phone, $room_num,
+        $room_type, $man, $animal_str, $price, $xy_point, $other);
+      if ($ret)
+        $page = 'pub_success';
+    }
+
+    // echo $page;
+    $this->load->view($page);
+  }
+
+}
