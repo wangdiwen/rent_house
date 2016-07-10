@@ -9,6 +9,7 @@ class Home extends CI_Controller {
     $this->load->model('rh_house');
     $this->load->helper('rh_public');
     // $this->load->library('lib_redis');
+    $this->load->library('session');
   }
 
   public function login() {
@@ -22,6 +23,44 @@ class Home extends CI_Controller {
     $sig = $openid_info['openid_sig'];
     $signed = $openid_info['openid_signed'];
     $signed_list = explode(',', $signed);
+
+    log_message('debug', 'OpenID server res = ' . json_encode($this->session->userdata('neid')));
+    $neid_data = $this->session->userdata('neid');
+    $mac_key = $neid_data['mac_key'];
+
+    if ($openid_info['openid_mode'] !== 'id_res'
+      || $openid_info['openid_assoc_handle'] !== $neid_data['assoc_handle']
+      || strpos($openid_info['openid_identity'], 'https://login.netease.com/openid/') !== 0
+      || strpos($openid_info['openid_claimed_id'], 'https://login.netease.com/openid/') !== 0
+      ) {
+      log_message('debug', $openid_info['openid_mode']);
+      log_message('debug', $openid_info['openid_assoc_handle']);
+      log_message('debug', $neid_data['assoc_handle']);
+      log_message('debug', strpos($openid_info['openid_identity'], 'https://login.netease.com/openid/'));
+      log_message('debug', strpos($openid_info['openid_claimed_id'], 'https://login.netease.com/openid/'));
+      echo "Invalid OpenID !!!";
+      return false;
+    }
+
+    $sig_str = 'assoc_handle:' . $openid_info['openid_assoc_handle'] . "\n";
+    $sig_str .= 'ax.mode:' . $openid_info['openid_ax_mode'] . "\n";
+    $sig_str .= 'claimed_id:' . $openid_info['openid_claimed_id'] . "\n";
+    $sig_str .= 'identity:' . $openid_info['openid_identity'] . "\n";
+    $sig_str .= 'mode:id_res' . "\n";
+    $sig_str .= 'ns:http://specs.openid.net/auth/2.0' . "\n";
+    $sig_str .= 'ns.ax:http://openid.net/srv/ax/1.0' . "\n";
+    $sig_str .= 'ns.sreg:http://openid.net/extensions/sreg/1.1' . "\n";
+    $sig_str .= 'op_endpoint:https://login.netease.com/openid/' . "\n";
+    $sig_str .= 'response_nonce:' . $openid_info['openid_response_nonce'] . "\n";
+    $sig_str .= 'return_to:' . $openid_info['openid_return_to'] . "\n";
+    $sig_str .= 'signed:' . $openid_info['openid_signed'] . "\n";
+    $sig_str .= 'sreg.email:' . $openid_info['openid_sreg_email'] . "\n";
+    $sig_str .= 'sreg.fullname:' . $openid_info['openid_sreg_fullname'] . "\n";
+    $sig_str .= 'sreg.nickname:' . $openid_info['openid_sreg_nickname'] . "\n";
+
+    $new_sig = base64_encode(hash_hmac('sha256', $sig_str, $mac_key));
+    log_message('debug', 'Old sig = ' . $sig);
+    log_message('debug', 'New sig = ' . $new_sig);
 
   }
 
@@ -94,6 +133,11 @@ class Home extends CI_Controller {
     }
     // print_r($post_arr);
     log_message('debug', 'OpenID Server response : ' . json_encode($post_arr));
+
+    $u_session = array(
+      'neid' => $post_arr,
+    );
+    $this->session->set_userdata($u_session);
 
     $jump_param = array(
       'openid.ns' => 'http://specs.openid.net/auth/2.0',
