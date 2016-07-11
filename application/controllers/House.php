@@ -58,12 +58,15 @@ class House extends CI_Controller {
       // fetch the image file path list
       $detail['imgs'] = array();
       $img_dir = 'data/' . $detail['popo'] . '/' . $detail['ukey'];
-      $dir = dir($img_dir);
-      while (($file = $dir->read()) !== false) {
-        if ($file !== '.' && $file !== '..')
-          $detail['imgs'][] = '/' . $img_dir . '/' . $file;
+      if (is_dir($img_dir)) {
+        $dir = dir($img_dir);
+        while (($file = $dir->read()) !== false) {
+          if ($file !== '.' && $file !== '..')
+            $detail['imgs'][] = '/' . $img_dir . '/' . $file;
+        }
+        $dir->close();
       }
-      $dir->close();
+
       unset($detail['ukey']);
     }
 

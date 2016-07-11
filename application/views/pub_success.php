@@ -10,7 +10,7 @@
                 <div class="page-heading">
                     <h1>发布成功~\(≧▽≦)/~</h1>
                     <hr class="small">
-                    <span class="subheading">去[4公里猪舍]看看有没有</span>
+                    <span class="subheading">去[3公里猪舍]看看有没有</span>
                 </div>
             </div>
         </div>
