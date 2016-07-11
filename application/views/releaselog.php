@@ -20,6 +20,25 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+          <p><strong>贡献开发&维护（成员列表）</strong></p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Steven Wang（hzwangdiwen1@corp.netease.com）<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            西秦公子（hzbaihuancheng@corp.netease.com）<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </p>
+
+          <p><strong>V0.0.3&nbsp;&nbsp;&nbsp;&nbsp;2016-07-11</strong></p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            1. 新增发布自动登陆；<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            2. 新增用户管理（查看/删除）；<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            3. 新增长短组可选；<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            4. 修复BUG；
+          </p>
+
           <p><strong>V0.0.2&nbsp;&nbsp;&nbsp;&nbsp;2016-07-10</strong></p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             1. 在蜂巢部门 “西秦公子” 同学的建议下，增加了【我要发布】自动关联网易内部 OpenID 统一认证；<br/>
@@ -29,11 +48,11 @@
             3. 修复了几处BUG；
           </p>
 
-            <p><strong>V0.0.1&nbsp;&nbsp;&nbsp;&nbsp;2016-07-09</strong></p>
-            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              1. 完成基本功能：发布猪舍，4公里地图麻点标注，查看猪舍详细，小区搜索，提需求和建议；<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              2. 在内网工作站上线，小范围邀请测试；</p>
+          <p><strong>V0.0.1&nbsp;&nbsp;&nbsp;&nbsp;2016-07-09</strong></p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            1. 完成基本功能：发布猪舍，4公里地图麻点标注，查看猪舍详细，小区搜索，提需求和建议；<br/>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            2. 在内网工作站上线，小范围邀请测试；</p>
         </div>
     </div>
 </div>

@@ -56,7 +56,7 @@
                      <td><?php echo $detail['community']; ?></td>
                   </tr>
                   <tr class="success">
-                     <td class="text-right">入舍时间</td>
+                     <td class="text-right">入舍截止时间</td>
                      <td><?php echo $detail['s_date']; ?></td>
                   </tr>
                   <tr  class="warning">
