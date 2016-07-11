@@ -12,6 +12,37 @@ class Rh_house extends CI_Model {
     // $this->load->dbutil();
   }
 
+  public function set_status($id, $bfx_email, $st = 0) {
+    return $this->db->update(
+      $this->tb_name,
+      array(
+        'status' => $st
+        ),
+      array(
+        'id' => $id,
+        'popo' => $bfx_email,
+        )
+      );
+  }
+
+  // fetch all user house of published
+  public function get_my_house($user_popo) {
+    if ($user_popo) {
+      $this->db->select('id, s_date, pub_time, community,
+        room_num, room_type, rent_type, man, animal, price')
+        ->from($this->tb_name)
+        ->where(array(
+          'status' => 1,
+          'popo' => $user_popo,
+        ))
+        ->order_by('id', 'DESC');
+      $query = $this->db->get();
+      if ($query && $query->num_rows() > 0)
+        return $query->result_array();
+    }
+    return [];
+  }
+
   // fetch just one record detail info
   public function one_detail($house_id) {
     $this->db->select('id, s_date, pub_time, ukey, community, popo, phone,

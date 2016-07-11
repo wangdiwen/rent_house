@@ -27,7 +27,7 @@
           <?php
             $name = $this->session->userdata('fullname');
             if ($name) {
-              echo '<li class=""><a href="#">欢迎你：' . $name . '</a></li>';
+              echo '<li class=""><a href="/user/myhouse">欢迎你：' . $name . '</a></li>';
               echo '<li class=""><a href="/home/clean">退出</a></li>';
             }
             else
