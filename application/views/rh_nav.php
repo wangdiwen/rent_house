@@ -6,6 +6,7 @@
     <div>
       <ul class="nav navbar-nav pull-right">
           <li class=""><a href="/home/index">3公里猪舍</a></li>
+          <li class=""><a href="/home/timeline">最新信息</a></li>
           <li class=""><a href="/home/publish">我要发布</a></li>
           <li class=""><a href="/feedback/index">需求&建议&BUG</a></li>
           <li class=""><a href="/release/index">ReleaseLog</a></li>
