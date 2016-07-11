@@ -12,7 +12,7 @@
         font: 12px Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
       }
        #container{
-	      margin-top:37px;
+        margin-top:37px;
       }
       .title{
         margin: 0px;
@@ -106,7 +106,7 @@
             '房租：' + poses[i]['price'] + '<br/>' +
             '房间：' + room_type + '    ' + poses[i]['room_num'] + ' 室<br/>' +
             '入住时间：' + poses[i]['s_date'] + '<br/>' +
-            '发布时间：' + poses[i]['pub_time'] + '<br/>' +
+            '发布时间：' + poses[i]['pub_time'].substr(0, 16) + '<br/>' +
             '<a target="_blank" href = "/house/detail?id=' + poses[i]['id'] + '">点击&查看详细</a></div>';
 
         marker.content = con_str;
