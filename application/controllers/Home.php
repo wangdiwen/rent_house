@@ -77,7 +77,9 @@ class Home extends CI_Controller {
       redirect('/home/index', 'location', 302);
     }
     else
-      $this->load->view($open_page);
+      $this->load->view($open_page, array(
+        'email' => explode('@', $openid_info['openid_sreg_email'])[0],
+      ));
   }
 
   // default index entry
@@ -109,7 +111,7 @@ class Home extends CI_Controller {
   }
 
   public function login() {
-    return $this->_redirect2neid('home');
+    return $this->_redirect2neid('/home/login', 'home');
   }
 
   public function clean() {
@@ -121,7 +123,7 @@ class Home extends CI_Controller {
   public function publish() {
     $email = $this->session->userdata('email');
     if (! $email) {
-      return $this->_redirect2neid('publish');
+      return $this->_redirect2neid('/home/publish', 'publish');
     }
     else {
       // $nickname = $this->session->userdata('nickname');
@@ -145,7 +147,7 @@ class Home extends CI_Controller {
   }
 
   // Redirect to NE-Openid
-  public function _redirect2neid($page = 'publish') {
+  public function _redirect2neid($from_which_url = '/home/index', $page = 'publish') {
     // doc: https://login.netease.com/download/ntes_openid_dev.pdf
 
     $params = array(
@@ -184,7 +186,7 @@ class Home extends CI_Controller {
       'openid.return_to'  => base_url() . 'home/recv_openid',
       'openid.claimed_id' => 'http://specs.openid.net/auth/2.0/identifier_select',
       'openid.identity'  => 'http://specs.openid.net/auth/2.0/identifier_select',
-      'openid.realm' => base_url() . $page,
+      'openid.realm' => base_url() . substr($from_which_url, 1),
       'openid.ns.sreg' => 'http://openid.net/extensions/sreg/1.1',
       'openid.sreg.required' => 'nickname,email,fullname',
     );
