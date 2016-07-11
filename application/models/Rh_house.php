@@ -75,7 +75,38 @@ class Rh_house extends CI_Model {
     }
     return [];
   }
+  //get time linedata
+  public function fetch_timeline ()
+  {
+  	$where = array(
+      's_date >=' => date('Y-m-d'),
+      'status' => 1,
+    );
 
+    $this->db->select('id, s_date, pub_time, community, popo, phone, price')
+      ->from($this->tb_name)
+      ->where($where)
+      ->order_by('pub_time','DESC')
+      ->limit(50);
+    $query = $this->db->get();
+    if ($query && $query->num_rows() > 0) {
+      return $query->result_array();
+    }
+    return [];
+  }
+  // get house data.
+  public function fetch_id ($id)
+  {
+  	$this->db->from($this->tb_name)
+      ->where(array(
+        'id' => $id,
+      ));
+    $query = $this->db->get();
+    if ($query && $query->num_rows() > 0) {
+      return $query->result_array();
+    }
+    return [];
+  }
   // fetch just zoon
   public function fetch_zoon($zoon_name) {
     $this->db->select('id, s_date, pub_time, community, room_num, room_type, price, xy_point')

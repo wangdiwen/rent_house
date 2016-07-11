@@ -203,4 +203,37 @@ class Home extends CI_Controller {
 
     header("Location: " . $url);
   }
+  public function timeline()
+  {
+  		$timelinedata= $all_pos = $this->rh_house->fetch_timeline();
+  		log_message('debug', 'Fetch Timeline Data: ' . json_encode($timelinedata));
+
+  		$hits_num = file_get_contents('hits.dat');
+	    $this->load->view('timeline', array(
+	      'pos' => $timelinedata,
+	      'hit' => $hits_num,
+	    ));
+  }
+  public function list2map ($id)
+  {
+  
+    log_message('debug', 'Search House ID = ' . $id);
+
+    $all_pos = $this->rh_house->fetch_id($id);
+    log_message('debug', 'Search all pos: ' . json_encode($all_pos));
+
+    foreach ($all_pos as $key => $value) {
+      $tmp = explode(',', $all_pos[$key]['xy_point']);
+      $new = array();
+      foreach ($tmp as $k => $v) {
+        $new[] = (float)$v;
+      }
+      $all_pos[$key]['xy_point'] = $new;
+    }
+    log_message('debug', 'Search new pos: ' . json_encode($all_pos));
+	
+ 	$this->load->view('home', array(
+      'pos' => $all_pos,
+    ));
+  }
 }
