@@ -34,9 +34,9 @@
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             2. 新增用户管理（查看/删除）；<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            3. 新增长短组可选；<br/>
+            3. 新增长短租可选；<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            4. 修复BUG；
+            4. 修复首页地图显示不全问题（by 西秦公子），还有几处BUG；
           </p>
 
           <p><strong>V0.0.2&nbsp;&nbsp;&nbsp;&nbsp;2016-07-10</strong></p>
