@@ -80,6 +80,7 @@ class House extends CI_Controller {
     $phone = trim($this->input->post('phone'));     //   132xxx
     $room_num = $this->input->post('room_num');     // * 3
     $room_type = $this->input->post('room_type');   // * master|slave|single
+    $rent_type = $this->input->post('rent_type');   // * long|short
     $man = $this->input->post('man');               // * girl|boy|no
     $animal = $this->input->post('animal');         //   cat|dog|no
     $price = $this->input->post('price');           // * 1500
@@ -99,7 +100,7 @@ class House extends CI_Controller {
     $page = 'pub_failed';
     if ($community && $popo && $xy_point) {
       $ret = $this->rh_house->save_item($s_date, $ukey, $community, $popo, $phone, $room_num,
-        $room_type, $man, $animal_str, $price, $xy_point, $other);
+        $room_type, $rent_type, $man, $animal_str, $price, $xy_point, $other);
       if ($ret)
         $page = 'pub_success';
     }

@@ -22,7 +22,7 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           <p><strong>V0.0.2&nbsp;&nbsp;&nbsp;&nbsp;2016-07-10</strong></p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            1. 在蜂巢部门的“西秦公子”的建议下，增加了【我要发布】自动关联网易内部 OpenID 统一认证；<br/>
+            1. 在蜂巢部门 “西秦公子” 同学的建议下，增加了【我要发布】自动关联网易内部 OpenID 统一认证；<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             2. 增加用户登录/退出功能；<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

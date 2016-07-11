@@ -74,7 +74,7 @@ class Home extends CI_Controller {
 
     $open_page = $this->session->userdata('open_page');
     if ($open_page == 'home') {
-      return $this->index();
+      redirect('/home/index', 'location', 302);
     }
     else
       $this->load->view($open_page);
@@ -127,6 +127,7 @@ class Home extends CI_Controller {
       // $nickname = $this->session->userdata('nickname');
       // log_message('debug', 'publish page: ' . 'email=' . $email . ', nickname=' . $nickname);
       $this->load->view('publish', array(
+        // 'email' => explode('@', $email)[0],
         'email' => explode('@', $email)[0],
       ));
     }

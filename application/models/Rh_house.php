@@ -14,7 +14,8 @@ class Rh_house extends CI_Model {
 
   // fetch just one record detail info
   public function one_detail($house_id) {
-    $this->db->select('id, s_date, pub_time, ukey, community, popo, phone, room_num, room_type,
+    $this->db->select('id, s_date, pub_time, ukey, community, popo, phone,
+      room_num, room_type, rent_type,
       man, animal, price, xy_point, other')
       ->from($this->tb_name)
       ->where('id', $house_id)
@@ -63,7 +64,7 @@ class Rh_house extends CI_Model {
 
   // save the publish house record
   public function save_item($s_date, $ukey, $community, $popo, $phone, $room_num,
-    $room_type, $man, $animal, $price, $xy_point, $other) {
+    $room_type, $rent_type, $man, $animal, $price, $xy_point, $other) {
     $data = array(
       's_date' => $s_date,
       'status' => 1,
@@ -74,6 +75,7 @@ class Rh_house extends CI_Model {
       'phone' => $phone,
       'room_num' => $room_num,
       'room_type' => $room_type,
+      'rent_type' => $rent_type,
       'man' => $man,
       'animal' => $animal,
       'price' => $price,

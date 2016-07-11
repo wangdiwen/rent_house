@@ -58,6 +58,15 @@
                 </div>
               </div>
               <div class="form-group">
+                <label  class="col-sm-2 control-label">长短租 *</label>
+                <div class="col-sm-10">
+                  <select id="rent_type" name="rent_type" class="form-control" style="width:auto;">
+                     <option value="long">长租</option>
+                     <option value="short">短租</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
                   <label  class="col-sm-2 control-label">人员限制 *</label>
                   <label class="checkbox-inline">
                      <input type="radio" name="man" id="just_girl" value="girl" >女生

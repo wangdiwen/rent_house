@@ -79,14 +79,18 @@
                         if ($detail['room_type'] == 'master') $type = '主卧';
                         elseif ($detail['room_type'] == 'slave') $type = '次卧';
                         else $type = '一居室';
-                        echo $type . '&nbsp;&nbsp;';
+                        echo $type . '&nbsp;&nbsp;&nbsp;&nbsp;';
 
-                        echo $detail['room_num'] . ' 室' . '&nbsp;&nbsp;';
+                        echo $detail['room_num'] . ' 室' . '&nbsp;&nbsp;&nbsp;&nbsp;';
 
                         $man = '男女不限';
                         if ($detail['man'] == 'girl') $man = '限女生';
                         elseif ($detail['man'] == 'boy') $man = '限男生';
-                        echo $man;
+                        echo $man . '&nbsp;&nbsp;&nbsp;&nbsp;';
+
+                        $rent = '短租' . '&nbsp;&nbsp;&nbsp;&nbsp;';
+                        if ($detail['rent_type'] == 'long') $rent = '长租';
+                        echo $rent;
                       ?>
                     </td>
                     <tr  class="warning">
