@@ -27,6 +27,12 @@
             西秦公子（hzbaihuancheng@corp.netease.com）<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </p>
+          <p><strong>V0.0.4&nbsp;&nbsp;&nbsp;&nbsp;2016-07-12</strong></p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            1. 新增【最新信息】Timeline功能（by 西秦公子）；<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            4. 改BUG；
+          </p>
 
           <p><strong>V0.0.3&nbsp;&nbsp;&nbsp;&nbsp;2016-07-11</strong></p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
