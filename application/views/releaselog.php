@@ -31,7 +31,7 @@
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             1. 新增【最新信息】Timeline功能（by 西秦公子）；<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            4. 改BUG；
+            4. 修复“。”同学吐槽中提到的 “发布时候选择主卧却变成次卧” 的bug；
           </p>
 
           <p><strong>V0.0.3&nbsp;&nbsp;&nbsp;&nbsp;2016-07-11</strong></p>

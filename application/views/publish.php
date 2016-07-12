@@ -18,7 +18,7 @@
           <legend><h3 class="text-center">填写一些简单的信息</h3></legend>
             <form id="pub_this_form" onsubmit="return validateform()" class="form-horizontal" role="form" method="post" action="/house/pub">
               <div class="form-group">
-                 <label class="col-sm-2 control-label">地理位置 *</label>
+                 <label class="col-sm-2 control-label">小区 *</label>
                  <div class="col-sm-10">
                     <input type="text" id="community" name="community" value="" placeholder="小区简称（滨兴东苑）">
                  </div>

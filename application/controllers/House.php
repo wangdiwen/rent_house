@@ -14,6 +14,43 @@ class House extends CI_Controller {
   //   return $this->rh_house->has();
   // }
 
+  public function modify() {
+    $id = $this->input->get('id');
+    if (is_numeric($id)) {
+      $detail = $this->rh_house->one_detail($id);
+      if ($detail) {
+        log_message('debug', 'modify detail = ' . json_encode($detail));
+        $this->load->view('modify', array(
+          'info' => $detail,
+          'id' => $id,
+        ));
+        return;
+      }
+    }
+
+    $this->load->view('error');
+  }
+
+  public function pub_mod() {
+    $id = $this->input->get('id');
+    $post = $this->input->post();
+    log_message('debug', 'pub_mod: ' . $id);
+    log_message('debug', 'pub_mod: ' . json_encode($post));
+
+    if (is_numeric($id) && $post['community'] && $post['room_num']
+      && $post['room_type'] && $post['rent_type']
+      && $post['man'] && $post['price'] && $post['s_date']) {
+      $ret = $this->rh_house->update_byid($id, $post['s_date'], $post['community'],
+        $post['phone'], $post['room_num'], $post['room_type'], $post['rent_type'],
+        $post['man'], $post['price'], $post['other_info']);
+      if ($ret) {
+        $this->load->view('pub_success');
+        return;
+      }
+    }
+    $this->load->view('error');
+  }
+
   // search the small zoon
   public function search() {
     $zoon_name = trim($this->input->post('zoon_name'));

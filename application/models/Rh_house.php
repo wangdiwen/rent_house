@@ -43,6 +43,28 @@ class Rh_house extends CI_Model {
     return [];
   }
 
+  public function update_byid($id, $s_date, $community,
+    $phone, $room_num, $room_type, $rent_type, $man, $price, $other) {
+    $data = array(
+      's_date' => $s_date,
+      'community' => $community,
+      'phone' => $phone,
+      'room_num' => $room_num,
+      'room_type' => $room_type,
+      'rent_type' => $rent_type,
+      'man' => $man,
+      'price' => $price,
+      'other' => $other,
+    );
+    return $this->db->update(
+      $this->tb_name,
+      $data,
+      array(
+        'id' => $id,
+      )
+    );
+  }
+
   // fetch just one record detail info
   public function one_detail($house_id) {
     $this->db->select('id, s_date, pub_time, ukey, community, popo, phone,
@@ -78,7 +100,7 @@ class Rh_house extends CI_Model {
   //get time linedata
   public function fetch_timeline ()
   {
-  	$where = array(
+    $where = array(
       's_date >=' => date('Y-m-d'),
       'status' => 1,
     );
@@ -94,10 +116,11 @@ class Rh_house extends CI_Model {
     }
     return [];
   }
+
   // get house data.
   public function fetch_id ($id)
   {
-  	$this->db->from($this->tb_name)
+    $this->db->from($this->tb_name)
       ->where(array(
         'id' => $id,
       ));
@@ -107,6 +130,7 @@ class Rh_house extends CI_Model {
     }
     return [];
   }
+
   // fetch just zoon
   public function fetch_zoon($zoon_name) {
     $this->db->select('id, s_date, pub_time, community, room_num, room_type, price, xy_point')

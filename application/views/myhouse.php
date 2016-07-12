@@ -48,6 +48,8 @@
                       echo '<td >';
                       echo '<a href="/house/detail?id=' . $v['id'] . '">查看</a>';
                       echo '&nbsp;&nbsp;&nbsp;';
+                      echo '<a href="/house/modify?id=' . $v['id'] . '">修改</a>';
+                      echo '&nbsp;&nbsp;&nbsp;';
                       echo '<a href="/user/del?id=' . $v['id'] . '">删除</a>';
                       echo '</td>';
                       echo '</tr>';
