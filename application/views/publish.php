@@ -51,8 +51,8 @@
                 <label  class="col-sm-2 control-label">卧室类型 *</label>
                 <div class="col-sm-10">
                   <select id="room_type" name="room_type" class="form-control" style="width:auto;">
-                     <option value="master">次卧</option>
-                     <option value="slave">主卧</option>
+                     <option value="slave">次卧</option>
+                     <option value="master">主卧</option>
                      <option value="single">单居室</option>
                   </select>
                 </div>
