@@ -17,10 +17,12 @@ if (! function_exists('rh_get')) {
               $curl_params = implode('&', $tmp_array);
           }
 
-          $url .= '?'.$curl_params;
+          if ($curl_params)
+            $url .= '?'.$curl_params;
 
-          curl_setopt($curl_obj, CURLOPT_URL, $url)     ;
+          curl_setopt($curl_obj, CURLOPT_URL, $url);
           curl_setopt($curl_obj, CURLOPT_TIMEOUT, 30);
+          curl_setopt($curl_obj, CURLOPT_HEADER, false);  // 不返回头，just body
           curl_setopt($curl_obj, CURLOPT_RETURNTRANSFER, true);
 
           $ret_data = curl_exec($curl_obj);
@@ -32,22 +34,34 @@ if (! function_exists('rh_get')) {
   }
 }
 
+// Ps. 如果params为字符post数据，pure_data设置为true
 if (! function_exists('rh_post')) {
-  function rh_post($url = '', $params = array()) {
+  function rh_post($url = '', $params = array(), $pure_data = false, $header = array()) {
     if ($url && $params) {
         $curl_obj = curl_init();
 
         $curl_params = '';
-        if ($params) {
+        if ($params && ! $pure_data) {
             $tmp_array = array();
             foreach ($params as $key => $value) {
                 $tmp_array[] = $key.'='.$value;
             }
             $curl_params = implode('&', $tmp_array);
         }
+        else
+          $curl_params =& $params;
 
         curl_setopt($curl_obj, CURLOPT_URL, $url);
-        curl_setopt($curl_obj, CURLOPT_HEADER, false);
+        if ($pure_data && $header)
+          curl_setopt($curl_obj, CURLOPT_HTTPHEADER, $header);
+        elseif ($pure_data && ! $header) {
+          $header = array(
+            'Content-Length: ' . strlen($curl_params)
+          );
+          curl_setopt($curl_obj, CURLOPT_HTTPHEADER, $header);
+        }
+
+        curl_setopt($curl_obj, CURLOPT_HEADER, false);  // 不返回头，just body
         curl_setopt($curl_obj, CURLOPT_TIMEOUT, 30);
         curl_setopt($curl_obj, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl_obj, CURLOPT_POST, true);
