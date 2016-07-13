@@ -1,6 +1,37 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+if (! function_exists('rh_get')) {
+  function rh_get($url = '', $params = array()) {
+      if ($url) {
+          $curl_obj = curl_init();
+
+          $curl_params = '';
+          if ($params) {
+              $tmp_array = array();
+              foreach ($params as $key => $value) {
+                  if ($key && $value) {
+                      $tmp_array[] = $key.'='.$value;
+                  }
+              }
+              $curl_params = implode('&', $tmp_array);
+          }
+
+          $url .= '?'.$curl_params;
+
+          curl_setopt($curl_obj, CURLOPT_URL, $url)     ;
+          curl_setopt($curl_obj, CURLOPT_TIMEOUT, 30);
+          curl_setopt($curl_obj, CURLOPT_RETURNTRANSFER, true);
+
+          $ret_data = curl_exec($curl_obj);
+          curl_close($curl_obj);
+
+          return $ret_data;
+      }
+      return false;
+  }
+}
+
 if (! function_exists('rh_post')) {
   function rh_post($url = '', $params = array()) {
     if ($url && $params) {
