@@ -31,7 +31,9 @@
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             1. 新增用户对房源信息可编辑功能；<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            4. 修复几处bug；
+            2. 新增首页点击麻点显示信息卡，然后任意空白出点击，自动消失；<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            3. 改bug；
           </p>
 
           <p><strong>V0.0.4&nbsp;&nbsp;&nbsp;&nbsp;2016-07-12</strong></p>
