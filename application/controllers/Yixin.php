@@ -13,6 +13,7 @@ class Yixin extends CI_Controller {
     // $this->load->library('lib_redis');
   }
 
+  // Yixin的Token获取接口，私有，在需要发起易信接口调用的时候使用
   private function _atk() {
     // read local tk and check the expires_time
     $text = file_get_contents('yixin_tk.dat');
@@ -33,7 +34,7 @@ class Yixin extends CI_Controller {
       // save the Yixin token to file
       @file_put_contents('yixin_tk.dat', json_encode($jtk));
     }
-    else echo "no need<br/>" . $jtk['access_token'];
+    // else echo "no need<br/>" . $jtk['access_token'];
 
     return $jtk['access_token'];
   }
