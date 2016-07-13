@@ -52,6 +52,19 @@
         // zooms: [10, 18]
       });
 
+      // 麻点信息窗体
+      var infoWindow = new AMap.InfoWindow();
+      // 杭研五角星窗体
+      var hz_card = new AMap.InfoWindow({
+        content: '<h3 class="title">网易杭研</h3><div class="content">'+ '3公里范围数据</div>'
+      });
+
+      var _mapclick = function(e) {
+        hz_card.close();
+        infoWindow.close();
+      }
+      map.on('click', _mapclick);
+
       // 4公里圆圈, radius(m)
       var circle = new AMap.Circle({
         // center: [120.19066572, 30.18783305],
@@ -64,18 +77,18 @@
       });
       circle.setMap(map);
 
+      circle.on('click', _mapclick);
+
       // 麻点0 -- 杭研
       var hz_mk = new AMap.Marker({
         position: [120.19068718, 30.18779595],
         icon : 'http://vdata.amap.com/icons/b18/1/2.png',  //24px*24px
       });
-      hz_mk.setMap(map);
+
       hz_mk.on('click',function(e){
-        var hz_card = new AMap.InfoWindow({
-          content: '<h3 class="title">网易杭研</h3><div class="content">'+ '3公里范围数据</div>',
-        });
         hz_card.open(map,e.target.getPosition());
       });
+      hz_mk.setMap(map);
 
       // 麻点点击回调
       function markerClick(e){
@@ -87,7 +100,6 @@
       var poses = <?php echo json_encode($pos); ?>;   // is a json obj
 
       // 麻点经纬度列表
-      var infoWindow = new AMap.InfoWindow();
       for(var i= 0,marker;i < poses.length;i++){
         marker=new AMap.Marker({
             position: poses[i]['xy_point'],
@@ -112,25 +124,6 @@
         marker.content = con_str;
         marker.on('click', markerClick);
       }
-
-      // // 麻点经纬度列表
-      // var lnglats = [
-      //   [120.18652439, 30.17944917], [120.19489288, 30.18080325]
-      // ];
-      // var infoWindow = new AMap.InfoWindow();
-      // for(var i= 0,marker;i<lnglats.length;i++){
-      //   marker=new AMap.Marker({
-      //       position:lnglats[i],
-      //       map:map
-      //   });
-      //   var con_str = '<h3 class="title">网易杭研</h3><div class="content">' +
-      //       '<img src="http://webapi.amap.com/images/amap.jpg">'+
-      //       '网易杭州研究院，4公里范围数据<br/>'+
-      //       '<a target="_blank" href = "http://mobile.amap.com/">查看具体</a></div>';
-      //
-      //   marker.content = con_str;
-      //   marker.on('click', markerClick);
-      // }
 
       // 比例尺
       AMap.plugin(['AMap.ToolBar','AMap.Scale'],function(){

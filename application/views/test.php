@@ -1,6 +1,8 @@
 <?php include_once('rh_header.php'); ?>
 <?php include_once('rh_nav.php'); ?>
 
+<br/>
+
     <!-- 高德地图样式 -->
     <style type="text/css">
       body,html,#container{
@@ -8,6 +10,9 @@
         margin: 0px;
         font-size: 12px;
         font: 12px Helvetica, 'Hiragino Sans GB', 'Microsoft Yahei', '微软雅黑', Arial, sans-serif;
+      }
+       #container{
+        margin-top:37px;
       }
       .title{
         margin: 0px;
@@ -41,13 +46,29 @@
     <script type="text/javascript">
       // 地图画布
       var map = new AMap.Map('container',{
-            resizeEnable: true,
-            zoom: 15,
-            center: [116.39,39.9]
+        resizeEnable: true,
+        zoom: 10,
+        center: [120.19, 30.18],
+        // zooms: [10, 18]
       });
+
+      // 麻点信息窗体
+      var infoWindow = new AMap.InfoWindow();
+      // 杭研五角星窗体
+      var hz_card = new AMap.InfoWindow({
+        content: '<h3 class="title">网易杭研</h3><div class="content">'+ '3公里范围数据</div>'
+      });
+
+      var _mapclick = function(e) {
+        hz_card.close();
+        infoWindow.close();
+      }
+      map.on('click', _mapclick);
+
       // 4公里圆圈, radius(m)
       var circle = new AMap.Circle({
-        center: [116.39,39.9],
+        // center: [120.19066572, 30.18783305],
+        center: [120.19, 30.18],
         radius: 3000,
         fillOpacity:0.1,
         fillColor:'#09f',
@@ -55,6 +76,54 @@
         strokeWeight:1
       });
       circle.setMap(map);
+
+      circle.on('click', _mapclick);
+
+      // 麻点0 -- 杭研
+      var hz_mk = new AMap.Marker({
+        position: [120.19068718, 30.18779595],
+        icon : 'http://vdata.amap.com/icons/b18/1/2.png',  //24px*24px
+      });
+
+      hz_mk.on('click',function(e){
+        hz_card.open(map,e.target.getPosition());
+      });
+      hz_mk.setMap(map);
+
+      // 麻点点击回调
+      function markerClick(e){
+        infoWindow.setContent(e.target.content);
+        infoWindow.open(map, e.target.getPosition());
+      }
+
+      // 接受数据
+      var poses = <?php echo json_encode($pos); ?>;   // is a json obj
+
+      // 麻点经纬度列表
+      for(var i= 0,marker;i < poses.length;i++){
+        marker=new AMap.Marker({
+            position: poses[i]['xy_point'],
+            map: map
+        });
+
+        var room_type = '次卧';
+        if (poses[i]['room_type'] == 'master') {
+          room_type = '主卧';
+        }
+        else if (poses[i]['room_type'] == 'single') {
+          room_type = '一居室';
+        }
+        var con_str = '<h3 class="title">' + poses[i]['community'] +'</h3><div class="content">' +
+            // '<img src="http://webapi.amap.com/images/amap.jpg">'+
+            '房租：' + poses[i]['price'] + '<br/>' +
+            '房间：' + room_type + '    ' + poses[i]['room_num'] + ' 室<br/>' +
+            '入住时间：' + poses[i]['s_date'] + '<br/>' +
+            '发布时间：' + poses[i]['pub_time'].substr(0, 16) + '<br/>' +
+            '<a target="_blank" href = "/house/detail?id=' + poses[i]['id'] + '">点击&查看详细</a></div>';
+
+        marker.content = con_str;
+        marker.on('click', markerClick);
+      }
 
       // 比例尺
       AMap.plugin(['AMap.ToolBar','AMap.Scale'],function(){
