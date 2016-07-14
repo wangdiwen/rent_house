@@ -2,3 +2,4 @@ data/*
 log/*
 application/logs/
 application/config/database.php
+hits.dat
