@@ -11,6 +11,12 @@ class Feedback extends CI_Controller {
   }
 
   public function index() {
+    $email = $this->session->userdata('email');
+    if (! $email) {
+      $this->load->view('pls_login');
+      return;
+    }
+
     // fetch the latest 10 items
     $feeds = $this->rh_advice->fetch_10();
 

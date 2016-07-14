@@ -32,13 +32,20 @@
                 <p><strong>关于为什么不用58，赶集，安居客，链家？Whatelse</strong></p>
                 <p>
                   1. 纯净无中介<br/>
-                  2. 在想想 ...<br/>
+                  2. 让我再想想 ...<br/>
                 </p>
 
                 <p><strong>PS：</strong></p>
                 > 由于不是专业Web开发，也不搞UE，所以比较粗糙，欢迎各位同学吐槽。<br/>
                 > 功能还在继续完善中，如果大家觉得工具还可以，可以在【需求/建议/BUG】中填写，所有建议和需求都会公布出来，并酌情在后面开发。O(∩_∩)O<br/>
-                > 有想参与管理和开发的同学，感兴趣的话，可以POPO： hzwangdiwen1@corp.netease.com<br/>
+                > 有想参与管理和开发的同学，感兴趣的话，可以POPO：
+                <?php
+                if ($this->session->userdata('email'))
+                  echo 'hzwangdiwen1@corp.netease.com';
+                else
+                  echo '<a href="/home/login">登录可查看</a>';
+                ?>
+                <br/>
                 <p>GL.</p>
             </div>
         </div>

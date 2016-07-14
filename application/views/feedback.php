@@ -1,17 +1,6 @@
 <?php include_once('rh_header.php'); ?>
 <?php include_once('rh_nav.php'); ?>
 
-<!-- 时间日期组件 -->
-<!-- <link href="/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-<script type="text/javascript" src="/static/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/static/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script> -->
-<!-- 上传多文件组件 -->
-<!-- <link href="/static/bootstrap-fileinput/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" /> -->
-<!-- <script src="path/to/js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
-<script src="path/to/js/plugins/sortable.min.js" type="text/javascript"></script>
-<script src="path/to/js/plugins/purify.min.js" type="text/javascript"></script> -->
-<!-- <script src="/static/bootstrap-fileinput/js/fileinput.min.js"></script> -->
-
 </br></br></br>
 
 <!-- Main Content -->
