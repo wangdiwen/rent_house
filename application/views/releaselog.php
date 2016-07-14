@@ -31,7 +31,9 @@
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             1. 增加POPO和手机信息未登录不可查看；<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            2. 改bug；
+            2. 提需求建议进行权限控制；<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            3. 改bug；
           </p>
 
           <p><strong>V0.0.5&nbsp;&nbsp;&nbsp;&nbsp;2016-07-13</strong></p>

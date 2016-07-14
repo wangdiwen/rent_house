@@ -15,12 +15,12 @@
                      <input type="text" id="net_nick" name="net_nick" value="" placeholder="网络称呼，比如：天蝎">
                   </div>
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                   <label class="col-sm-2 control-label">POPO</label>
                   <div class="col-sm-10">
                      <input type="text" id="popo" name="popo" value="" placeholder="可选，Corp前缀">@corp.netease.com
                   </div>
-              </div>
+              </div> -->
               <div class="form-group">
                   <label  class="col-sm-2 control-label">说点啥 *</label>
                   <div class="col-sm-10">
@@ -30,7 +30,7 @@
 
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                   <button type="submit" class="btn btn-success">提交</button>
+                   <button type="submit" class="btn btn-success">发表谏言/吐槽</button>
                 </div>
              </div>
             </form>

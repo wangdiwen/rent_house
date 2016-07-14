@@ -26,10 +26,17 @@ class Feedback extends CI_Controller {
   }
 
   public function advice() {
+    $email = $this->session->userdata('email');
+    if (! $email) {
+      $this->load->view('pls_login');
+      return;
+    }
+
     $nick = trim($this->input->post('net_nick'));
-    $popo = $this->input->post('popo');
+    // $popo = $this->input->post('popo');
     $say = trim($this->input->post('say'));
     $say = substr($say, 0, 140);
+    $popo = explode('@', $email)[0];
 
     $ret = $this->rh_advice->save_item($nick, $popo, $say);
     if ($ret) {
