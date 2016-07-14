@@ -22,9 +22,9 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           <p><strong>贡献开发&维护（成员列表）</strong></p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Steven Wang（hzwangdiwen1@corp.netease.com）<br/>
+            Steven Wang <?php if ($has_login) echo '（hzwangdiwen1@corp.netease.com）'; ?><br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            西秦公子（hzbaihuancheng@corp.netease.com）<br/>
+            西秦公子 <?php if ($has_login) echo '（hzbaihuancheng@corp.netease.com）'; ?><br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </p>
           <p><strong>V0.0.6&nbsp;&nbsp;&nbsp;&nbsp;2016-07-14</strong></p>

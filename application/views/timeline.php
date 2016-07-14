@@ -1,18 +1,9 @@
 <?php include_once('rh_header.php'); ?>
 <?php include_once('rh_nav.php'); ?>
+
 <link href="//cdn.bootcss.com/datatables/1.10.12/css/dataTables.bootstrap.min.css" rel="stylesheet">
-	<script src="//cdn.bootcss.com/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
-	<script src="//cdn.bootcss.com/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
-<!-- 时间日期组件 -->
-<!-- <link href="/static/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-<script type="text/javascript" src="/static/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/static/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script> -->
-<!-- 上传多文件组件 -->
-<!-- <link href="/static/bootstrap-fileinput/css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" /> -->
-<!-- <script src="path/to/js/plugins/canvas-to-blob.min.js" type="text/javascript"></script>
-<script src="path/to/js/plugins/sortable.min.js" type="text/javascript"></script>
-<script src="path/to/js/plugins/purify.min.js" type="text/javascript"></script> -->
-<!-- <script src="/static/bootstrap-fileinput/js/fileinput.min.js"></script> -->
+<script src="//cdn.bootcss.com/datatables/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="//cdn.bootcss.com/datatables/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
 </br></br></br>
 
@@ -20,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-          <legend><h4 class="text-center">Timeline</h4></legend>
+          <legend><h4 class="text-center">The Latest Timeline</h4></legend>
            <table id="data" class="table table-striped table-bordered" cellspacing="0" width="100%">
         <thead>
             <tr>
@@ -33,24 +24,32 @@
                 <th>发布时间</th>
             </tr>
         </thead>
-        
+
         <tbody>
-             <?php
+          <?php
             foreach ($pos as $k => $v) {
               echo '<tr><td>' . $v['community'] . ' </td>';
               echo '<td>' . $v['s_date'] . ' </td>';
-              echo '<td>' . $v['popo'] . '@corp.netease.com </td>';
-              echo '<td>' . $v['phone'] . ' </td>';
+
+              if ($has_login) {
+                echo '<td>' . $v['popo'] . '</td>';
+                echo '<td>' . $v['phone'] . '@corp.netease.com </td>';
+              }
+              else {
+                echo '<td><a href="/home/login">登录可查看</a></td>';
+                echo '<td><a href="/home/login">登录可查看</a></td>';
+              }
+
               echo '<td>' . $v['price'] . ' </td>';
               echo '<td><a href="/home/list2map/' . $v['id'] . '" />查看地图</a> </td>';
-              echo '<td>' . $v['pub_time'] . ' </td> </tr>';
+              echo '<td>' . substr($v['pub_time'], 0, 16) . ' </td> </tr>';
             }
           ?>
         </tbody>
     </table>
 
-         
-         
+
+
 
         </div>
     </div>

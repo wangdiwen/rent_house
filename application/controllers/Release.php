@@ -11,7 +11,13 @@ class Release extends CI_Controller {
   }
 
   public function index() {
-    $this->load->view('releaselog');
+    $has_login = false;
+    if ($this->session->userdata('email'))
+      $has_login = true;
+
+    $this->load->view('releaselog', array(
+      'has_login' => $has_login,
+    ));
   }
 
 }

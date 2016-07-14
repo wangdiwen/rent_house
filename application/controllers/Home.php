@@ -123,7 +123,8 @@ class Home extends CI_Controller {
   public function publish() {
     $email = $this->session->userdata('email');
     if (! $email) {
-      return $this->_redirect2neid('/home/publish', 'publish');
+      // return $this->_redirect2neid('/home/publish', 'publish');
+      return $this->load->view('pls_login');
     }
     else {
       // $nickname = $this->session->userdata('nickname');
@@ -205,13 +206,26 @@ class Home extends CI_Controller {
   }
 
   public function timeline() {
-      $timelinedata= $all_pos = $this->rh_house->fetch_timeline();
+      $timelinedata = $this->rh_house->fetch_timeline();
       log_message('debug', 'Fetch Timeline Data: ' . json_encode($timelinedata));
 
-      $hits_num = file_get_contents('hits.dat');
+      // check user has login, if not then cannot show 'popo' and 'phone'
+      $has_login = false;
+      if ($this->session->userdata('email'))
+        $has_login = true;
+      // if (! $email) {
+      //   $detail['popo'] = '<a href="/home/login">登录可查看</a>';
+      //   if ($detail['phone'])
+      //     $detail['phone'] = '<a href="/home/login">登录可查看</a>';
+      // }
+      // else
+      //   $detail['popo'] .= '@corp.netease.com';
+
+      $hits_num = @file_get_contents('hits.dat');
       $this->load->view('timeline', array(
         'pos' => $timelinedata,
         'hit' => $hits_num,
+        'has_login' => $has_login,
       ));
   }
 

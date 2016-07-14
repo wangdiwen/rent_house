@@ -1,7 +1,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/home/index">NE租房分享</a>
+      <a class="navbar-brand" href="/home/index">易租易卖--NE公益站</a>
     </div>
     <div>
       <ul class="nav navbar-nav pull-right">
