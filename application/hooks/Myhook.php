@@ -11,7 +11,7 @@ class Myhook {
   public function add_hits() {
     $df = 'hits.dat';
     $hits = NULL;
-    $content = file_get_contents($df);
+    $content = @file_get_contents($df);
     // print_r($content);
     if (! $content) $hits = 1;
     else $hits = (int)$content + 1;

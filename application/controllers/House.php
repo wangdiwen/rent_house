@@ -95,9 +95,9 @@ class House extends CI_Controller {
       // check user has login, if not then cannot show 'popo' and 'phone'
       $email = $this->session->userdata('email');
       if (! $email) {
-        $detail['popo'] = '登录可查看';
+        $detail['popo'] = '<a href="/home/login">登录可查看</a>';
         if ($detail['phone'])
-          $detail['phone'] = '登录可查看';
+          $detail['phone'] = '<a href="/home/login">登录可查看</a>';
       }
       else
         $detail['popo'] .= '@corp.netease.com';
