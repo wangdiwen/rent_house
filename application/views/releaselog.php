@@ -27,6 +27,13 @@
             西秦公子（hzbaihuancheng@corp.netease.com）<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </p>
+          <p><strong>V0.0.6&nbsp;&nbsp;&nbsp;&nbsp;2016-07-14</strong></p>
+          <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            1. 增加POPO和手机信息未登录不可查看；<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            2. 改bug；
+          </p>
+
           <p><strong>V0.0.5&nbsp;&nbsp;&nbsp;&nbsp;2016-07-13</strong></p>
           <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             1. 新增用户对房源信息可编辑功能；<br/>
