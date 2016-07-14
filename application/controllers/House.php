@@ -92,6 +92,16 @@ class House extends CI_Controller {
 
       unset($detail['xy_point']);
 
+      // check user has login, if not then cannot show 'popo' and 'phone'
+      $email = $this->session->userdata('email');
+      if (! $email) {
+        $detail['popo'] = '登录可查看';
+        if ($detail['phone'])
+          $detail['phone'] = '登录可查看';
+      }
+      else
+        $detail['popo'] .= '@corp.netease.com';
+
       // fetch the image file path list
       $detail['imgs'] = array();
       $img_dir = 'data/' . $detail['popo'] . '/' . $detail['ukey'];

@@ -61,7 +61,7 @@
                   </tr>
                   <tr  class="warning">
                      <td class="text-right">POPO号</td>
-                     <td><?php echo $detail['popo']; ?>@corp.netease.com</td>
+                     <td><?php echo $detail['popo']; ?></td>
                   </tr>
                   <tr  class="danger">
                      <td class="text-right">手机</td>
